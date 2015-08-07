@@ -116,5 +116,15 @@ public class ProductDTO {
     public void setStock(Integer value) {
         this.stock = value;
     }
+    
+    public String toString(){
+    	StringBuilder sb = new StringBuilder();
+		sb.append(getName().getValue());
+		sb.append(" - Prijs: ");
+		sb.append(getPrice().doubleValue());
+		sb.append(" - Voorraad ");
+		sb.append(getStock().intValue());
+		return sb.toString();
+    }
 
 }

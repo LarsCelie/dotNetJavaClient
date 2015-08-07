@@ -1,23 +1,25 @@
 package gui;
 
 import java.awt.EventQueue;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import java.util.List;
 
-import javax.swing.JFrame;
-import javax.swing.JList;
-import java.awt.BorderLayout;
-import java.awt.GridBagLayout;
-import java.awt.GridBagConstraints;
-import java.awt.Insets;
-import javax.swing.JPanel;
-import java.awt.FlowLayout;
-import javax.swing.JLabel;
-import java.awt.GridLayout;
+import javax.swing.DefaultListModel;
 import javax.swing.JButton;
-import javax.swing.JScrollPane;
+import javax.swing.JFrame;
+import javax.swing.JLabel;
+import javax.swing.JList;
+
+import org.datacontract.schemas._2004._07.servicelibrary.ArrayOfProductDTO;
+import org.datacontract.schemas._2004._07.servicelibrary.ProductDTO;
+import org.tempuri.IProductService;
+import org.tempuri.ProductService;
 
 public class StoreWindow {
 
 	private JFrame frame;
+	private JList storeList, customerList;
 
 	/**
 	 * Launch the application.
@@ -51,15 +53,20 @@ public class StoreWindow {
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		frame.getContentPane().setLayout(null);
 		
-		JList list = new JList();
-		list.setBounds(63, 64, 188, 300);
-		frame.getContentPane().add(list);
+		storeList = new JList();
+		storeList.setBounds(63, 64, 188, 300);
+		frame.getContentPane().add(storeList);
 		
-		JList list_1 = new JList();
-		list_1.setBounds(468, 64, 188, 300);
-		frame.getContentPane().add(list_1);
+		customerList = new JList();
+		customerList.setBounds(468, 64, 188, 300);
+		frame.getContentPane().add(customerList);
 		
 		JButton btnKoopProduct = new JButton("Koop product");
+		btnKoopProduct.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				buyProduct();
+			}
+		});
 		btnKoopProduct.setBounds(121, 374, 130, 25);
 		frame.getContentPane().add(btnKoopProduct);
 		
@@ -80,7 +87,31 @@ public class StoreWindow {
 		frame.getContentPane().add(lblNewLabel_1);
 		
 		JButton btnRefresh = new JButton("Refresh");
+		btnRefresh.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				refreshStore();
+			}
+		});
 		btnRefresh.setBounds(168, 31, 97, 25);
 		frame.getContentPane().add(btnRefresh);
+	}
+
+	protected void buyProduct() {
+		ProductService service = new ProductService();
+		IProductService proxy = service.getBasicHttpBindingIProductService();
+		//proxy.changeProductStock(product, amount);
+		
+	}
+
+	private void refreshStore(){
+		ProductService service = new ProductService();
+		IProductService proxy = service.getBasicHttpBindingIProductService();
+		ArrayOfProductDTO productArray = proxy.getProductsInStock();
+		List<ProductDTO> products = productArray.getProductDTO();
+		DefaultListModel listModel = new DefaultListModel();
+		for (ProductDTO p : products){
+			listModel.addElement(p); //toString of ProductDTO will print correctly
+		}
+		storeList.setModel(listModel);
 	}
 }
