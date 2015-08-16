@@ -13,29 +13,13 @@ import javax.swing.JList;
 
 import org.datacontract.schemas._2004._07.servicelibrary.ArrayOfProductDTO;
 import org.datacontract.schemas._2004._07.servicelibrary.ProductDTO;
-import org.tempuri.IProductService;
-import org.tempuri.ProductService;
+import org.tempuri.IStoreService;
+import org.tempuri.StoreService;
 
 public class StoreWindow {
 
 	private JFrame frame;
 	private JList storeList, customerList;
-
-	/**
-	 * Launch the application.
-	 */
-	public static void main(String[] args) {
-		EventQueue.invokeLater(new Runnable() {
-			public void run() {
-				try {
-					StoreWindow window = new StoreWindow();
-					window.frame.setVisible(true);
-				} catch (Exception e) {
-					e.printStackTrace();
-				}
-			}
-		});
-	}
 
 	/**
 	 * Create the application.
@@ -94,18 +78,19 @@ public class StoreWindow {
 		});
 		btnRefresh.setBounds(168, 31, 97, 25);
 		frame.getContentPane().add(btnRefresh);
+		frame.setVisible(true);
 	}
 
 	protected void buyProduct() {
-		ProductService service = new ProductService();
-		IProductService proxy = service.getBasicHttpBindingIProductService();
+		StoreService service = new StoreService();
+		IStoreService proxy = service.getBasicHttpBindingIStoreService();
 		//proxy.changeProductStock(product, amount);
 		
 	}
 
 	private void refreshStore(){
-		ProductService service = new ProductService();
-		IProductService proxy = service.getBasicHttpBindingIProductService();
+		StoreService service = new StoreService();
+		IStoreService proxy = service.getBasicHttpBindingIStoreService();
 		ArrayOfProductDTO productArray = proxy.getProductsInStock();
 		List<ProductDTO> products = productArray.getProductDTO();
 		DefaultListModel listModel = new DefaultListModel();

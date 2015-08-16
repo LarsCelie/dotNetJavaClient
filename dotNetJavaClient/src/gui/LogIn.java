@@ -77,7 +77,6 @@ public class LogIn {
 				try {
 					CustomerDTO customer = proxy.authenticate(usernameField.getText(), passwordField.getText());
 					StoreWindow window = new StoreWindow();
-					window.frame.setVisible(true);
 				} catch (IStoreServiceAuthenticateCustomerErrorMessageFaultFaultMessage e1) {
 					// TODO Auto-generated catch block
 					e1.printStackTrace();
