@@ -13,6 +13,7 @@ import javax.swing.JList;
 import javax.swing.ListSelectionModel;
 
 import org.datacontract.schemas._2004._07.servicelibrary.ArrayOfProductDTO;
+import org.datacontract.schemas._2004._07.servicelibrary.CustomerDTO;
 import org.datacontract.schemas._2004._07.servicelibrary.ProductDTO;
 import org.tempuri.IStoreService;
 import org.tempuri.StoreService;
@@ -24,12 +25,15 @@ public class StoreWindow {
 
 	private JFrame frame;
 	private JList storeList, customerList;
+	private CustomerDTO customer;
 
 	/**
 	 * Create the application.
 	 */
-	public StoreWindow() {
+	public StoreWindow(CustomerDTO customer) {
+		this.customer = customer;
 		initialize();
+		refreshStore();
 	}
 
 	/**
@@ -90,13 +94,13 @@ public class StoreWindow {
 	protected void buyProduct() {
 		StoreService service = new StoreService();
 		IStoreService proxy = service.getBasicHttpBindingIStoreService();
-		Object product = storeList.getSelectedValue();
+		ProductDTO product = (ProductDTO)storeList.getSelectedValue();
 		ArrayOfKeyValueOfstringint orderRows = new ArrayOfKeyValueOfstringint();
 		KeyValueOfstringint input = new KeyValueOfstringint();
-		input.setKey("something");
-		input.setValue(0);
+		input.setKey(product.getName().getValue());
+		input.setValue(1);
 		orderRows.getKeyValueOfstringint().add(input);
-		proxy.placeOrder("Lars", orderRows); //TODO: make customer name dynamic
+		proxy.placeOrder(customer.getName().getValue(), orderRows);
 		
 	}
 
