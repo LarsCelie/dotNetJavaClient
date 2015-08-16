@@ -76,7 +76,7 @@ public class LogIn {
 				IStoreService proxy = storeService.getBasicHttpBindingIStoreService();
 				try{
 					CustomerDTO customer = proxy.authenticate(usernameField.getText(), passwordField.getText());
-					new StoreWindow();
+					new StoreWindow(customer);
 					frame.dispose();	
 				}catch(javax.xml.ws.soap.SOAPFaultException ex){
 					JOptionPane.showMessageDialog(null, ex.getMessage(), "Error",
