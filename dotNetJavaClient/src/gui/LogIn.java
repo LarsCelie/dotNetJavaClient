@@ -6,6 +6,7 @@ import java.awt.Insets;
 
 import javax.swing.JFrame;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JTabbedPane;
 import javax.swing.UIManager;
 import javax.swing.UnsupportedLookAndFeelException;
@@ -20,7 +21,6 @@ import javax.swing.JPanel;
 
 import org.datacontract.schemas._2004._07.servicelibrary.CustomerDTO;
 import org.tempuri.IStoreService;
-import org.tempuri.IStoreServiceAuthenticateCustomerErrorMessageFaultFaultMessage;
 import org.tempuri.StoreService;
 
 
@@ -74,14 +74,14 @@ public class LogIn {
 			public void actionPerformed(ActionEvent e) {
 				StoreService storeService = new StoreService();
 				IStoreService proxy = storeService.getBasicHttpBindingIStoreService();
-				try {
+				try{
 					CustomerDTO customer = proxy.authenticate(usernameField.getText(), passwordField.getText());
 					new StoreWindow();
-					frame.dispose();
-				} catch (IStoreServiceAuthenticateCustomerErrorMessageFaultFaultMessage e1) {
-					// TODO Auto-generated catch block
-					e1.printStackTrace();
-				}		
+					frame.dispose();	
+				}catch(javax.xml.ws.soap.SOAPFaultException ex){
+					JOptionPane.showMessageDialog(null, ex.getMessage(), "Error",
+                            JOptionPane.WARNING_MESSAGE);
+				}			
 			}
 		});
 		card1.add(login);
@@ -115,8 +115,13 @@ public class LogIn {
 			public void actionPerformed(ActionEvent e) {
 				StoreService storeService = new StoreService();
 				IStoreService proxy = storeService.getBasicHttpBindingIStoreService();
-				String password = proxy.register(newUserField.getText());
-				notificationRegister.setText("Your new password: "+password);
+				try{
+					String password = proxy.register(newUserField.getText());
+					notificationRegister.setText("Your new password: "+password);
+				}catch(javax.xml.ws.soap.SOAPFaultException ex){
+					JOptionPane.showMessageDialog(null, ex.getMessage(), "Error",
+                            JOptionPane.WARNING_MESSAGE);
+				}
 			}
 		});
 		card2.add(register);
