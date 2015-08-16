@@ -1,6 +1,5 @@
 package gui;
 
-import java.awt.EventQueue;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.text.DecimalFormat;
@@ -15,6 +14,7 @@ import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JList;
+import javax.swing.JOptionPane;
 import javax.swing.ListSelectionModel;
 
 import org.datacontract.schemas._2004._07.servicelibrary.ArrayOfOrderDTO;
@@ -112,8 +112,8 @@ public class StoreWindow {
 		orderRows.getKeyValueOfstringint().add(input);
 		try {	
 			proxy.placeOrder(customer.getName().getValue(), orderRows);
-		} catch (javax.xml.ws.soap.SOAPFaultException e) {
-			e.printStackTrace();
+		} catch (javax.xml.ws.soap.SOAPFaultException ex) {
+			JOptionPane.showMessageDialog(null, ex.getMessage(), "Error",JOptionPane.WARNING_MESSAGE);
 		}
 		refreshInventory();
 		refreshStore();
