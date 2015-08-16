@@ -24,12 +24,12 @@ import javax.xml.namespace.QName;
 @XmlRegistry
 public class ObjectFactory {
 
-    private final static QName _OrderEntryDTO_QNAME = new QName("http://schemas.datacontract.org/2004/07/ServiceLibrary", "OrderEntryDTO");
-    private final static QName _OrderDTO_QNAME = new QName("http://schemas.datacontract.org/2004/07/ServiceLibrary", "OrderDTO");
-    private final static QName _ArrayOfOrderEntryDTO_QNAME = new QName("http://schemas.datacontract.org/2004/07/ServiceLibrary", "ArrayOfOrderEntryDTO");
-    private final static QName _ArrayOfOrderDTO_QNAME = new QName("http://schemas.datacontract.org/2004/07/ServiceLibrary", "ArrayOfOrderDTO");
-    private final static QName _OrderEntryDTOProductName_QNAME = new QName("http://schemas.datacontract.org/2004/07/ServiceLibrary", "ProductName");
-    private final static QName _OrderDTOEntries_QNAME = new QName("http://schemas.datacontract.org/2004/07/ServiceLibrary", "entries");
+    private final static QName _ErrorMessage_QNAME = new QName("http://schemas.datacontract.org/2004/07/ServiceLibrary", "ErrorMessage");
+    private final static QName _CustomerDTO_QNAME = new QName("http://schemas.datacontract.org/2004/07/ServiceLibrary", "CustomerDTO");
+    private final static QName _ErrorMessageDetails_QNAME = new QName("http://schemas.datacontract.org/2004/07/ServiceLibrary", "Details");
+    private final static QName _ErrorMessageMessage_QNAME = new QName("http://schemas.datacontract.org/2004/07/ServiceLibrary", "Message");
+    private final static QName _CustomerDTOName_QNAME = new QName("http://schemas.datacontract.org/2004/07/ServiceLibrary", "Name");
+    private final static QName _CustomerDTOPassword_QNAME = new QName("http://schemas.datacontract.org/2004/07/ServiceLibrary", "Password");
 
     /**
      * Create a new ObjectFactory that can be used to create new instances of schema derived classes for package: org.datacontract.schemas._2004._07.servicelibrary
@@ -39,89 +39,73 @@ public class ObjectFactory {
     }
 
     /**
-     * Create an instance of {@link ArrayOfOrderDTO }
+     * Create an instance of {@link CustomerDTO }
      * 
      */
-    public ArrayOfOrderDTO createArrayOfOrderDTO() {
-        return new ArrayOfOrderDTO();
+    public CustomerDTO createCustomerDTO() {
+        return new CustomerDTO();
     }
 
     /**
-     * Create an instance of {@link ArrayOfOrderEntryDTO }
+     * Create an instance of {@link ErrorMessage }
      * 
      */
-    public ArrayOfOrderEntryDTO createArrayOfOrderEntryDTO() {
-        return new ArrayOfOrderEntryDTO();
+    public ErrorMessage createErrorMessage() {
+        return new ErrorMessage();
     }
 
     /**
-     * Create an instance of {@link OrderEntryDTO }
+     * Create an instance of {@link JAXBElement }{@code <}{@link ErrorMessage }{@code >}}
      * 
      */
-    public OrderEntryDTO createOrderEntryDTO() {
-        return new OrderEntryDTO();
+    @XmlElementDecl(namespace = "http://schemas.datacontract.org/2004/07/ServiceLibrary", name = "ErrorMessage")
+    public JAXBElement<ErrorMessage> createErrorMessage(ErrorMessage value) {
+        return new JAXBElement<ErrorMessage>(_ErrorMessage_QNAME, ErrorMessage.class, null, value);
     }
 
     /**
-     * Create an instance of {@link OrderDTO }
+     * Create an instance of {@link JAXBElement }{@code <}{@link CustomerDTO }{@code >}}
      * 
      */
-    public OrderDTO createOrderDTO() {
-        return new OrderDTO();
-    }
-
-    /**
-     * Create an instance of {@link JAXBElement }{@code <}{@link OrderEntryDTO }{@code >}}
-     * 
-     */
-    @XmlElementDecl(namespace = "http://schemas.datacontract.org/2004/07/ServiceLibrary", name = "OrderEntryDTO")
-    public JAXBElement<OrderEntryDTO> createOrderEntryDTO(OrderEntryDTO value) {
-        return new JAXBElement<OrderEntryDTO>(_OrderEntryDTO_QNAME, OrderEntryDTO.class, null, value);
-    }
-
-    /**
-     * Create an instance of {@link JAXBElement }{@code <}{@link OrderDTO }{@code >}}
-     * 
-     */
-    @XmlElementDecl(namespace = "http://schemas.datacontract.org/2004/07/ServiceLibrary", name = "OrderDTO")
-    public JAXBElement<OrderDTO> createOrderDTO(OrderDTO value) {
-        return new JAXBElement<OrderDTO>(_OrderDTO_QNAME, OrderDTO.class, null, value);
-    }
-
-    /**
-     * Create an instance of {@link JAXBElement }{@code <}{@link ArrayOfOrderEntryDTO }{@code >}}
-     * 
-     */
-    @XmlElementDecl(namespace = "http://schemas.datacontract.org/2004/07/ServiceLibrary", name = "ArrayOfOrderEntryDTO")
-    public JAXBElement<ArrayOfOrderEntryDTO> createArrayOfOrderEntryDTO(ArrayOfOrderEntryDTO value) {
-        return new JAXBElement<ArrayOfOrderEntryDTO>(_ArrayOfOrderEntryDTO_QNAME, ArrayOfOrderEntryDTO.class, null, value);
-    }
-
-    /**
-     * Create an instance of {@link JAXBElement }{@code <}{@link ArrayOfOrderDTO }{@code >}}
-     * 
-     */
-    @XmlElementDecl(namespace = "http://schemas.datacontract.org/2004/07/ServiceLibrary", name = "ArrayOfOrderDTO")
-    public JAXBElement<ArrayOfOrderDTO> createArrayOfOrderDTO(ArrayOfOrderDTO value) {
-        return new JAXBElement<ArrayOfOrderDTO>(_ArrayOfOrderDTO_QNAME, ArrayOfOrderDTO.class, null, value);
+    @XmlElementDecl(namespace = "http://schemas.datacontract.org/2004/07/ServiceLibrary", name = "CustomerDTO")
+    public JAXBElement<CustomerDTO> createCustomerDTO(CustomerDTO value) {
+        return new JAXBElement<CustomerDTO>(_CustomerDTO_QNAME, CustomerDTO.class, null, value);
     }
 
     /**
      * Create an instance of {@link JAXBElement }{@code <}{@link String }{@code >}}
      * 
      */
-    @XmlElementDecl(namespace = "http://schemas.datacontract.org/2004/07/ServiceLibrary", name = "ProductName", scope = OrderEntryDTO.class)
-    public JAXBElement<String> createOrderEntryDTOProductName(String value) {
-        return new JAXBElement<String>(_OrderEntryDTOProductName_QNAME, String.class, OrderEntryDTO.class, value);
+    @XmlElementDecl(namespace = "http://schemas.datacontract.org/2004/07/ServiceLibrary", name = "Details", scope = ErrorMessage.class)
+    public JAXBElement<String> createErrorMessageDetails(String value) {
+        return new JAXBElement<String>(_ErrorMessageDetails_QNAME, String.class, ErrorMessage.class, value);
     }
 
     /**
-     * Create an instance of {@link JAXBElement }{@code <}{@link ArrayOfOrderEntryDTO }{@code >}}
+     * Create an instance of {@link JAXBElement }{@code <}{@link String }{@code >}}
      * 
      */
-    @XmlElementDecl(namespace = "http://schemas.datacontract.org/2004/07/ServiceLibrary", name = "entries", scope = OrderDTO.class)
-    public JAXBElement<ArrayOfOrderEntryDTO> createOrderDTOEntries(ArrayOfOrderEntryDTO value) {
-        return new JAXBElement<ArrayOfOrderEntryDTO>(_OrderDTOEntries_QNAME, ArrayOfOrderEntryDTO.class, OrderDTO.class, value);
+    @XmlElementDecl(namespace = "http://schemas.datacontract.org/2004/07/ServiceLibrary", name = "Message", scope = ErrorMessage.class)
+    public JAXBElement<String> createErrorMessageMessage(String value) {
+        return new JAXBElement<String>(_ErrorMessageMessage_QNAME, String.class, ErrorMessage.class, value);
+    }
+
+    /**
+     * Create an instance of {@link JAXBElement }{@code <}{@link String }{@code >}}
+     * 
+     */
+    @XmlElementDecl(namespace = "http://schemas.datacontract.org/2004/07/ServiceLibrary", name = "Name", scope = CustomerDTO.class)
+    public JAXBElement<String> createCustomerDTOName(String value) {
+        return new JAXBElement<String>(_CustomerDTOName_QNAME, String.class, CustomerDTO.class, value);
+    }
+
+    /**
+     * Create an instance of {@link JAXBElement }{@code <}{@link String }{@code >}}
+     * 
+     */
+    @XmlElementDecl(namespace = "http://schemas.datacontract.org/2004/07/ServiceLibrary", name = "Password", scope = CustomerDTO.class)
+    public JAXBElement<String> createCustomerDTOPassword(String value) {
+        return new JAXBElement<String>(_CustomerDTOPassword_QNAME, String.class, CustomerDTO.class, value);
     }
 
 }
