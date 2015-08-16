@@ -20,9 +20,9 @@ import javax.swing.JButton;
 import javax.swing.JPanel;
 
 import org.datacontract.schemas._2004._07.servicelibrary.CustomerDTO;
-import org.tempuri.CustomerService;
-import org.tempuri.ICustomerService;
-import org.tempuri.ICustomerServiceAuthenticateErrorMessageFaultFaultMessage;
+import org.tempuri.IStoreService;
+import org.tempuri.IStoreServiceAuthenticateCustomerErrorMessageFaultFaultMessage;
+import org.tempuri.StoreService;
 
 
 
@@ -72,16 +72,15 @@ public class LogIn {
 		login.addActionListener(new ActionListener() {			
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				CustomerService customerService = new CustomerService();
-				ICustomerService proxy = customerService.getBasicHttpBindingICustomerService();
+				StoreService storeService = new StoreService();
+				IStoreService proxy = storeService.getBasicHttpBindingIStoreService();
 				try {
 					CustomerDTO customer = proxy.authenticate(usernameField.getText(), passwordField.getText());
-					JOptionPane.showMessageDialog(pane, "succes!!");
-				} catch (ICustomerServiceAuthenticateErrorMessageFaultFaultMessage e1) {
+					JOptionPane.showMessageDialog(pane, "succes!!");	
+				} catch (IStoreServiceAuthenticateCustomerErrorMessageFaultFaultMessage e1) {
 					// TODO Auto-generated catch block
 					e1.printStackTrace();
-				}
-				
+				}		
 			}
 		});
 		card1.add(login);
