@@ -13,7 +13,6 @@ import javax.swing.JList;
 import javax.swing.ListSelectionModel;
 
 import org.datacontract.schemas._2004._07.servicelibrary.ArrayOfProductDTO;
-import org.datacontract.schemas._2004._07.servicelibrary.Product;
 import org.datacontract.schemas._2004._07.servicelibrary.ProductDTO;
 import org.tempuri.IStoreService;
 import org.tempuri.StoreService;

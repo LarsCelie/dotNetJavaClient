@@ -12,7 +12,6 @@ import com.microsoft.schemas._2003._10.serialization.arrays.ArrayOfKeyValueOfstr
 import org.datacontract.schemas._2004._07.servicelibrary.ArrayOfOrderDTO;
 import org.datacontract.schemas._2004._07.servicelibrary.ArrayOfProductDTO;
 import org.datacontract.schemas._2004._07.servicelibrary.CustomerDTO;
-import org.datacontract.schemas._2004._07.servicelibrary.Product;
 
 
 /**
@@ -51,7 +50,6 @@ public interface IStoreService {
      * @param username
      * @return
      *     returns org.datacontract.schemas._2004._07.servicelibrary.CustomerDTO
-     * @throws IStoreServiceAuthenticateCustomerErrorMessageFaultFaultMessage
      */
     @WebMethod(operationName = "Authenticate", action = "http://tempuri.org/IStoreService/Authenticate")
     @WebResult(name = "AuthenticateResult", targetNamespace = "http://tempuri.org/")
@@ -61,23 +59,7 @@ public interface IStoreService {
         @WebParam(name = "username", targetNamespace = "http://tempuri.org/")
         String username,
         @WebParam(name = "password", targetNamespace = "http://tempuri.org/")
-        String password)
-        throws IStoreServiceAuthenticateCustomerErrorMessageFaultFaultMessage
-    ;
-
-    /**
-     * 
-     * @param product
-     * @param amount
-     */
-    @WebMethod(operationName = "ChangeProductStock", action = "http://tempuri.org/IStoreService/ChangeProductStock")
-    @RequestWrapper(localName = "ChangeProductStock", targetNamespace = "http://tempuri.org/", className = "org.tempuri.ChangeProductStock")
-    @ResponseWrapper(localName = "ChangeProductStockResponse", targetNamespace = "http://tempuri.org/", className = "org.tempuri.ChangeProductStockResponse")
-    public void changeProductStock(
-        @WebParam(name = "product", targetNamespace = "http://tempuri.org/")
-        Product product,
-        @WebParam(name = "amount", targetNamespace = "http://tempuri.org/")
-        Integer amount);
+        String password);
 
     /**
      * 
