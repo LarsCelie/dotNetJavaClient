@@ -6,7 +6,6 @@ import java.awt.Insets;
 
 import javax.swing.JFrame;
 import javax.swing.JLabel;
-import javax.swing.JOptionPane;
 import javax.swing.JTabbedPane;
 import javax.swing.UIManager;
 import javax.swing.UnsupportedLookAndFeelException;
@@ -33,6 +32,7 @@ public class LogIn {
 	final static String LOGIN = "Login";
 	final static String REGISTER = "Register";
 	final static int extraWindowWidth = 100;
+	static JFrame frame;
 
 	public void addComponentToPane(Container pane) {
 		JTabbedPane tabbedPane = new JTabbedPane();
@@ -76,7 +76,8 @@ public class LogIn {
 				IStoreService proxy = storeService.getBasicHttpBindingIStoreService();
 				try {
 					CustomerDTO customer = proxy.authenticate(usernameField.getText(), passwordField.getText());
-					StoreWindow window = new StoreWindow();
+					new StoreWindow();
+					frame.dispose();
 				} catch (IStoreServiceAuthenticateCustomerErrorMessageFaultFaultMessage e1) {
 					// TODO Auto-generated catch block
 					e1.printStackTrace();
@@ -102,14 +103,20 @@ public class LogIn {
 		size = newUserField.getPreferredSize();
 		newUserField.setBounds(120+insets.left,30+insets.top,100,size.height);
 		card2.add(newUserField);
+		JLabel notificationRegister = new JLabel();
+		size = newUser.getPreferredSize();
+		notificationRegister.setBounds(30+insets.left, 90+insets.top, 200, size.height);
+		card2.add(notificationRegister);
 		JButton register = new JButton("Register");
 		size = register.getPreferredSize();
 		register.setBounds(260+insets.left, 60+insets.top, size.width, size.height);
 		register.addActionListener(new ActionListener() {		
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				// TODO handle the register event
-				
+				StoreService storeService = new StoreService();
+				IStoreService proxy = storeService.getBasicHttpBindingIStoreService();
+				String password = proxy.register(newUserField.getText());
+				notificationRegister.setText("Your new password: "+password);
 			}
 		});
 		card2.add(register);
@@ -123,7 +130,7 @@ public class LogIn {
 	
 	private static void createAndShowGUI() {
 		//Create and set up the window
-		JFrame frame = new JFrame("Login");
+		frame = new JFrame("Login");
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		
 		//Create and set up the content pane
