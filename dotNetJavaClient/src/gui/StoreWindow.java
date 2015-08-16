@@ -56,12 +56,12 @@ public class StoreWindow {
 		frame.getContentPane().setLayout(null);
 		
 		storeList = new JList();
-		storeList.setBounds(63, 64, 188, 300);
+		storeList.setBounds(63, 64, 256, 300);
 		storeList.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
 		frame.getContentPane().add(storeList);
 		
 		customerList = new JList();
-		customerList.setBounds(468, 64, 188, 300);
+		customerList.setBounds(400, 64, 256, 300);
 		customerList.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
 		frame.getContentPane().add(customerList);
 		
@@ -75,11 +75,11 @@ public class StoreWindow {
 		frame.getContentPane().add(btnKoopProduct);
 		
 		JLabel lblSaldo = new JLabel("Saldo:");
-		lblSaldo.setBounds(478, 377, 56, 16);
+		lblSaldo.setBounds(410, 378, 56, 16);
 		frame.getContentPane().add(lblSaldo);
 		
 		saldo = new JLabel("50.00");
-		saldo.setBounds(546, 377, 56, 16);
+		saldo.setBounds(478, 378, 56, 16);
 		frame.getContentPane().add(saldo);
 		
 		JLabel lblNewLabel = new JLabel("Winkel voorraad");
@@ -87,7 +87,7 @@ public class StoreWindow {
 		frame.getContentPane().add(lblNewLabel);
 		
 		JLabel lblNewLabel_1 = new JLabel("Gekochte producten");
-		lblNewLabel_1.setBounds(468, 35, 113, 16);
+		lblNewLabel_1.setBounds(410, 35, 113, 16);
 		frame.getContentPane().add(lblNewLabel_1);
 		
 		JButton btnRefresh = new JButton("Refresh");
@@ -96,7 +96,7 @@ public class StoreWindow {
 				refreshStore();
 			}
 		});
-		btnRefresh.setBounds(168, 31, 97, 25);
+		btnRefresh.setBounds(222, 31, 97, 25);
 		frame.getContentPane().add(btnRefresh);
 		frame.setVisible(true);
 	}
@@ -116,6 +116,7 @@ public class StoreWindow {
 			e.printStackTrace();
 		}
 		refreshInventory();
+		refreshStore();
 	}
 
 	private void refreshStore(){
