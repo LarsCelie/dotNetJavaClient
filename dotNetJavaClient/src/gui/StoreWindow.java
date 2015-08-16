@@ -125,8 +125,7 @@ public class StoreWindow {
 		List<ProductDTO> products = productArray.getProductDTO();
 		DefaultListModel listModel = new DefaultListModel();
 		for (ProductDTO p : products){
-			listModel.addElement(p); //TODO: implement renderer to display correctly
-			System.out.println(p.toString());
+			listModel.addElement(p); //the toString of ProductDTO will display this correctly
 		}
 		storeList.setModel(listModel);
 	}

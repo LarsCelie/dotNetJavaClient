@@ -119,7 +119,7 @@ public class ProductDTO {
     
     public String toString(){
     	StringBuilder sb = new StringBuilder("");
-    	sb.append(getName());
+    	sb.append(getName().getValue());
     	sb.append(" - Prijs: ");
     	sb.append(getPrice());
     	sb.append(" - Voorraad: ");
